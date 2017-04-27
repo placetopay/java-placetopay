@@ -40,7 +40,7 @@ public class Card extends Entity {
     private String cvv;
     private String expirationMonth;
     private String expirationYear;
-    protected int installments;
+    protected Integer installments;
     protected String kind = TP_CREDIT;
 
     public Card(JSONObject object) {
@@ -56,12 +56,12 @@ public class Card extends Entity {
             this.kind = object.getString("kind");
     }
     
-    public Card(String name, String number, String cvv, String expirationMonth, String expirationYear, int installments, String kind) {
+    public Card(String name, String number, String cvv, String expirationMonth, String expirationYear, Integer installments, String kind) {
         this(name, number, cvv, expirationMonth, expirationYear, installments);
         this.kind = kind;
     }
     
-    public Card(String name, String number, String cvv, String expirationMonth, String expirationYear, int installments) {
+    public Card(String name, String number, String cvv, String expirationMonth, String expirationYear, Integer installments) {
         this.name = name;
         this.number = number;
         this.cvv = cvv;
@@ -100,7 +100,7 @@ public class Card extends Entity {
         return cvv;
     }
     
-    public int getInstallments() {
+    public Integer getInstallments() {
         return installments;
     }
     

@@ -39,13 +39,13 @@ import org.json.JSONObject;
 public class Notification extends Entity implements HasStatus {
 
     protected Status status;
-    protected final int requestId;
+    protected final Integer requestId;
     protected final String reference;
     protected final String signature;
     
     private String tranKey;
 
-    public Notification(Status status, int requestId, String reference, String signature, String tranKey) {
+    public Notification(Status status, Integer requestId, String reference, String signature, String tranKey) {
         this.status = status;
         this.requestId = requestId;
         this.reference = reference;
@@ -67,7 +67,7 @@ public class Notification extends Entity implements HasStatus {
         );
     }
 
-    public int getRequestId() {
+    public Integer getRequestId() {
         return requestId;
     }
 

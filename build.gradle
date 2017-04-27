@@ -15,8 +15,10 @@ allprojects {
 	repositories {
 		jcenter()
 	}
+        apply plugin: 'maven'
+	apply plugin: 'maven-publish'
 	apply plugin: 'java'
-
+        
         sourceCompatibility = '1.8'
         [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
@@ -31,15 +33,27 @@ allprojects {
             ext.mainClass = ''
         }
 }
+
+publishing {
+	publications {
+		MyPublication(MavenPublication) {
+			from components.java
+			groupId 'com.placetopay'
+            		artifactId 'java-placetopay'
+            		version '1.0'
+		}
+	}
+}
+
 bintray {	
 	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
 	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-	configurations = ['archives']
+        publications = ['MyPublication'] 	
 	pkg {
-		repo = 'redirection'
-		name = 'redirection-client'
+		repo = 'maven'
+		name = 'java-placetopay'
 		licenses = ['MIT']
-		vcsUrl = 'https://github.com/placetopay/redirection-java.git'
+		vcsUrl = 'https://github.com/placetopay/java-placetopay.git'
 		version {
 			name = '1.0'
 			desc = 'Library to connect with PlacetoPay Redirection service'

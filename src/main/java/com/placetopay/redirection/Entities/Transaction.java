@@ -38,7 +38,7 @@ public class Transaction extends Entity {
     protected Status status;
     
     protected String reference;
-    protected int internalReference;
+    protected Integer internalReference;
     protected String paymentMethod;
     protected String paymentMethodName;
     protected String issuerName;
@@ -66,7 +66,7 @@ public class Transaction extends Entity {
         this.processorFields = object.has("processorFields") ? setProcessorFields(object.get("processorFields")) : null;
     }
         
-    public Transaction(Status status, String reference, int internalReference, String paymentMethod, String paymentMethodName, String issuerName, AmountConversion amount, String authorization, Long receipt, String franchise, boolean refunded, List<NameValuePair> processorFields) {
+    public Transaction(Status status, String reference, Integer internalReference, String paymentMethod, String paymentMethodName, String issuerName, AmountConversion amount, String authorization, Long receipt, String franchise, boolean refunded, List<NameValuePair> processorFields) {
         this.status = status;
         this.reference = reference;
         this.internalReference = internalReference;
@@ -89,7 +89,7 @@ public class Transaction extends Entity {
         return reference;
     }
 
-    public int getInternalReference() {
+    public Integer getInternalReference() {
         return internalReference;
     }
 

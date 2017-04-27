@@ -36,14 +36,14 @@ class Recurring extends Entity {
      * Y = annual  M = monthly  D = daily
      */
     protected String periodicity;
-    protected int interval;
+    protected Integer interval;
     protected String nextPayment;
     /**
      * Depends on the number of times that it makes the charge, corresponds to maximum times that the recurrence
      * will happen. If you do not want to set up should indicated -1.
      * You must specify this parameter or dueDate
      */
-    protected int maxPeriods;
+    protected Integer maxPeriods;
     protected String dueDate;
     protected String notificationUrl;
     
@@ -66,7 +66,7 @@ class Recurring extends Entity {
      * @param dueDate in Y-m-d format
      * @param notificationUrl
      */
-    public Recurring(String periodicity, int interval, String nextPayment, int maxPeriods, String dueDate, String notificationUrl) {
+    public Recurring(String periodicity, Integer interval, String nextPayment, Integer maxPeriods, String dueDate, String notificationUrl) {
         this.periodicity = periodicity;
         this.interval = interval;
         this.nextPayment = nextPayment;
@@ -79,7 +79,7 @@ class Recurring extends Entity {
         return periodicity;
     }
 
-    public int getInterval() {
+    public Integer getInterval() {
         return interval;
     }
 
@@ -87,7 +87,7 @@ class Recurring extends Entity {
         return nextPayment;
     }
 
-    public int getMaxPeriods() {
+    public Integer getMaxPeriods() {
         return maxPeriods;
     }
 

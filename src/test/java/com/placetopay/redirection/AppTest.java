@@ -17,6 +17,10 @@ public class AppTest
     extends TestCase
 {
  
+    public void testNothing() {
+        
+    }
+    
     public Gateway getGateway() {
         try {
             return new PlaceToPay(

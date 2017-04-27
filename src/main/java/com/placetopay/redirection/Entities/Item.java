@@ -35,7 +35,7 @@ public class Item extends Entity {
     protected String sku;
     protected String name;
     protected String category;
-    protected int qty;
+    protected Integer qty;
     protected float price;
     protected float tax;
 
@@ -50,7 +50,7 @@ public class Item extends Entity {
         );
     }    
     
-    public Item(String sku, String name, String category, int qty, float price, float tax) {
+    public Item(String sku, String name, String category, Integer qty, float price, float tax) {
         this.sku = sku;
         this.name = name;
         this.category = category;
@@ -71,7 +71,7 @@ public class Item extends Entity {
         return category;
     }
 
-    public int getQty() {
+    public Integer getQty() {
         return qty;
     }
 

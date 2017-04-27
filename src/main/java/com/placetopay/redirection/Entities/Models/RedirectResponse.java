@@ -34,7 +34,7 @@ import org.json.JSONObject;
  */
 public class RedirectResponse extends Entity implements HasStatus {
     
-    public int requestId;
+    public Integer requestId;
     public String processUrl;
     protected Status status;
 
@@ -48,7 +48,7 @@ public class RedirectResponse extends Entity implements HasStatus {
         this.status = object.has("status") ? new Status(object.getJSONObject("status")) : null;
     }
 
-    public RedirectResponse(int requestId, String processUrl, Status status) {
+    public RedirectResponse(Integer requestId, String processUrl, Status status) {
         this.requestId = requestId;
         this.processUrl = processUrl;
         this.status = status;
@@ -58,7 +58,7 @@ public class RedirectResponse extends Entity implements HasStatus {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public int getRequestId() {
+    public Integer getRequestId() {
         return requestId;
     }
 

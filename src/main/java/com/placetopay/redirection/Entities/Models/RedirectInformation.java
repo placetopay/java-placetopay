@@ -39,7 +39,7 @@ import org.json.JSONObject;
  */
 public class RedirectInformation extends Entity implements HasStatus {
     
-    public int requestId;
+    public Integer requestId;
     public RedirectRequest request;
     public List<Transaction> payment;
     public SubscriptionInformation subscription;
@@ -57,7 +57,7 @@ public class RedirectInformation extends Entity implements HasStatus {
         this.status = object.has("status") ? new Status(object.getJSONObject("status")) : null;
     }
     
-    public RedirectInformation(int requestId, RedirectRequest request, List<Transaction> payment, SubscriptionInformation subscription) {
+    public RedirectInformation(Integer requestId, RedirectRequest request, List<Transaction> payment, SubscriptionInformation subscription) {
         this.requestId = requestId;
         this.request = request;
         this.payment = payment;
@@ -74,7 +74,7 @@ public class RedirectInformation extends Entity implements HasStatus {
         return status;
     }
 
-    public int getRequestId() {
+    public Integer getRequestId() {
         return requestId;
     }
 

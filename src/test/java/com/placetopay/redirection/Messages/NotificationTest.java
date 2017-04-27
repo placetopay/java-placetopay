@@ -55,7 +55,7 @@ public class NotificationTest extends AppTest {
         assertTrue("Valid notification", notification.isValidNotification());
         assertTrue(notification.getStatus().getStatus(), notification.isApproved());
         assertFalse(notification.getStatus().getStatus(), notification.isRejected());
-        assertEquals("Same request identifier", notification.getRequestId(), 83);
+        assertEquals("Same request identifier", notification.getRequestId(), new Integer(83));
         assertEquals("Same reference", notification.getReference(), "TEST_20161010_213937");
     }
     
