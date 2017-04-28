@@ -104,7 +104,7 @@ public class CollectRequest extends EntityWithNameValuePair {
 
     /**
      * Asigna el parámetro {@link CollectRequest#locale}
-     * @param locale
+     * @param locale {@link CollectRequest#locale}
      */
     public void setLocale(String locale) {
         this.locale = locale;
@@ -112,7 +112,7 @@ public class CollectRequest extends EntityWithNameValuePair {
 
     /**
      * Asigna el parámetro {@link CollectRequest#payer}
-     * @param payer
+     * @param payer {@link CollectRequest#payer}
      */
     public void setPayer(Person payer) {
         this.payer = payer;
@@ -120,7 +120,7 @@ public class CollectRequest extends EntityWithNameValuePair {
 
     /**
      * Asigna el parámetro {@link CollectRequest#buyer}
-     * @param buyer
+     * @param buyer {@link CollectRequest#buyer}
      */
     public void setBuyer(Person buyer) {
         this.buyer = buyer;
@@ -128,7 +128,7 @@ public class CollectRequest extends EntityWithNameValuePair {
 
     /**
      * Asigna el parámetro {@link CollectRequest#payment}
-     * @param payment
+     * @param payment {@link CollectRequest#payment}
      */
     public void setPayment(Payment payment) {
         this.payment = payment;
@@ -136,7 +136,7 @@ public class CollectRequest extends EntityWithNameValuePair {
 
     /**
      * Asigna el parámetro {@link CollectRequest#instrument}
-     * @param instrument
+     * @param instrument {@link CollectRequest#instrument}
      */
     public void setInstrument(Instrument instrument) {
         this.instrument = instrument;

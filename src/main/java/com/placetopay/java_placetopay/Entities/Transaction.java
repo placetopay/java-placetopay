@@ -211,7 +211,7 @@ public class Transaction extends Entity {
     
     /**
      *
-     * @param base
+     * @param base json content
      */
     public void setAmountBase(JSONObject base) {
         AmountBase base1 = new AmountBase(base);

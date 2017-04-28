@@ -167,48 +167,48 @@ public class RedirectRequest extends EntityWithNameValuePair {
     }
     
     /**
-     * Asigna el parámetro {@link RedirectRequest#locale}
-     * @param locale
+     * Asigna el parámetro locale
+     * @param locale {@link RedirectRequest#locale}
      */
     public void setLocale(String locale) {
         this.locale = locale;
     }
 
     /**
-     * Asigna el parámetro {@link RedirectRequest#returnUrl}
-     * @param returnUrl
+     * Asigna el parámetro locale
+     * @param returnUrl {@link RedirectRequest#locale}
      */
     public void setReturnUrl(String returnUrl) {
         this.returnUrl = returnUrl;
     }
 
     /**
-     * Asigna el parámetro {@link RedirectRequest#cancelUrl}
-     * @param cancelUrl
+     * Asigna el parámetro cancelUrl
+     * @param cancelUrl {@link RedirectRequest#cancelUrl}
      */
     public void setCancelUrl(String cancelUrl) {
         this.cancelUrl = cancelUrl;
     }
 
     /**
-     * Asigna el parámetro {@link RedirectRequest#ipAddress}
-     * @param ipAddress
+     * Asigna el parámetro ipAddress
+     * @param ipAddress {@link RedirectRequest#ipAddress}
      */
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
 
     /**
-     * Asigna el parámetro {@link RedirectRequest#userAgent}
-     * @param userAgent
+     * Asigna el parámetro userAgent
+     * @param userAgent {@link RedirectRequest#userAgent}
      */
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
     }
 
     /**
-     * Asigna el parámetro {@link RedirectRequest#expiration}
-     * @param expiration
+     * Asigna el parámetro expiration
+     * @param expiration {@link RedirectRequest#expiration}
      */
     public void setExpiration(String expiration) {
         this.expiration = expiration;

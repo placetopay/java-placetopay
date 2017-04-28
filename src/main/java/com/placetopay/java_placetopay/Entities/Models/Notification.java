@@ -90,8 +90,8 @@ public class Notification extends Entity implements HasStatus {
     
     /**
      * 
-     * @param content 
-     * @param tranKey
+     * @param content json content
+     * @param tranKey credential
      * @throws BadPlaceToPayException Si la estructura de la notificación no es correcta
      */
     public Notification(String content, String tranKey) throws BadPlaceToPayException {
@@ -108,8 +108,8 @@ public class Notification extends Entity implements HasStatus {
     }
     /**
      * 
-     * @param object
-     * @param tranKey
+     * @param object json content
+     * @param tranKey credential
      * @throws BadPlaceToPayException Si la estructura de la notificación no es correcta
      */
     public Notification(JSONObject object, String tranKey) throws BadPlaceToPayException {
@@ -129,8 +129,8 @@ public class Notification extends Entity implements HasStatus {
     }
 
     /**
-     *
-     * @return
+     * Devuelve el parámetro reference
+     * @return {@link Notification#reference}
      */
     public String getReference() {
         return reference;
@@ -146,7 +146,7 @@ public class Notification extends Entity implements HasStatus {
         
     /**
      * Asigna el parámetro {@link Notification#status}
-     * @param status
+     * @param status {@link Notification#status}
      */
     @Override
     public void setStatus(Status status) {

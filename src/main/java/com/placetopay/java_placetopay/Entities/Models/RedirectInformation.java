@@ -81,8 +81,8 @@ public class RedirectInformation extends Entity implements HasStatus {
     }
 
     /**
-     * Asigna el parámetro {@link RedirectInformation#status}
-     * @param status
+     * Asigna el parámetro status
+     * @param status {@link RedirectInformation#status}
      */
     @Override
     public void setStatus(Status status) {
@@ -90,32 +90,32 @@ public class RedirectInformation extends Entity implements HasStatus {
     }
 
     /**
-     * Asigna el parámetro {@link RedirectInformation#requestId}
-     * @param requestId
+     * Asigna el parámetro requestId
+     * @param requestId {@link RedirectInformation#requestId}
      */
     public void setRequestId(Integer requestId) {
         this.requestId = requestId;
     }
 
     /**
-     * Asigna el parámetro {@link RedirectInformation#request}
-     * @param request
+     * Asigna el parámetro request
+     * @param request {@link RedirectInformation#request}
      */
     public void setRequest(RedirectRequest request) {
         this.request = request;
     }
 
     /**
-     * Asigna el parámetro {@link RedirectInformation#payment}
-     * @param payment
+     * Asigna el parámetro payment
+     * @param payment {@link RedirectInformation#payment}
      */
     public void setPayment(List<Transaction> payment) {
         this.payment = payment;
     }
 
     /**
-     * Asigna el parámetro {@link RedirectInformation#subscription}
-     * @param subscription
+     * Asigna el parámetro subscription
+     * @param subscription {@link RedirectInformation#subscription}
      */
     public void setSubscription(SubscriptionInformation subscription) {
         this.subscription = subscription;

@@ -68,12 +68,12 @@ public class Address extends Entity {
     }
     /**
      * Crea una nueva instancia de {@link Address}
-     * @param street
-     * @param city
-     * @param state
-     * @param postalCode
-     * @param country
-     * @param phone 
+     * @param street Calle
+     * @param city Ciudad
+     * @param state Estado
+     * @param postalCode Código postal
+     * @param country País
+     * @param phone Teléfono
      */
     public Address(String street, String city, String state, String postalCode, String country, String phone) {
         this.street = street;

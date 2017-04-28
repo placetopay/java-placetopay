@@ -58,15 +58,15 @@ public class ReverseResponse extends Entity implements HasStatus {
         this.status = status;
     }
     /**
-     * Retorna el parámetro {@link ReverseResponse#payment}
-     * @return 
+     * Retorna el parámetro payment}
+     * @return {@link ReverseResponse#payment}
      */
     public Transaction getPayment() {
         return payment;
     }
     /**
-     * Retorna el parámetro {@link ReverseResponse#status}
-     * @return 
+     * Retorna el parámetro status
+     * @return {@link ReverseResponse#status}
      */
     @Override
     public Status getStatus() {
