@@ -19,7 +19,7 @@ allprojects {
 	apply plugin: 'maven-publish'
 	apply plugin: 'java'
         
-        sourceCompatibility = '1.8'
+        sourceCompatibility = '1.6'
         [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
         // NetBeans will automatically add "run" and "debug" tasks relying on the
@@ -34,6 +34,22 @@ allprojects {
         }
 }
 
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
 publishing {
 	publications {
 		MyPublication(MavenPublication) {
@@ -43,6 +59,8 @@ publishing {
             		version '1.0'
 		}
 	}
+        artifact sourcesJar 
+        artifact javadocJar
 }
 
 bintray {	
@@ -51,9 +69,9 @@ bintray {
         publications = ['MyPublication'] 	
 	pkg {
 		repo = 'maven'
-		name = 'java-placetopay'
+		name = 'java_placetopay'
 		licenses = ['MIT']
-		vcsUrl = 'https://github.com/placetopay/java-placetopay.git'
+		vcsUrl = 'https://github.com/placetopay/java_placetopay.git'
 		version {
 			name = '1.0'
 			desc = 'Library to connect with PlacetoPay Redirection service'
