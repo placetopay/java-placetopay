@@ -51,7 +51,12 @@ public class NotificationTest extends AppTest {
             "   \"signature\":\"8fb4beea130ab3e75a1de956bd0213892e0f6839\"" +
             "}";
         JSONObject object = new JSONObject(data);
-        Notification notification = new Notification(object, "024h1IlD");
+        Notification notification;
+        try {
+            notification = new Notification(object, "024h1IlD");
+        } catch (BadPlaceToPayException ex) {
+            throw new PlaceToPayException(ex.getMessage());
+        }
         assertTrue("Valid notification", notification.isValidNotification());
         assertTrue(notification.getStatus().getStatus(), notification.isApproved());
         assertFalse(notification.getStatus().getStatus(), notification.isRejected());
