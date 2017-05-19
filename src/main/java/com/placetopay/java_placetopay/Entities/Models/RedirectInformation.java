@@ -60,10 +60,18 @@ public class RedirectInformation extends Entity implements HasStatus {
      */
     protected Status status;
 
+    /**
+     * Crea una nueva instancia de {@link RedirectInformation}
+     * @param status {@link RedirectInformation#status}
+     */
     public RedirectInformation(Status status) {
         this.status = status;
     }    
-    
+    /**
+     * Crea una nueva instancia de {@link RedirectInformation}
+     * Convierte el json en una nueva instancia de esta clase
+     * @param object Json que contiene la información
+     */
     public RedirectInformation(JSONObject object) {
         this.requestId = object.has("requestId") ? object.getInt("requestId") : null;
         this.request = object.has("request") ? new RedirectRequest(object.getJSONObject("request")) : null;
@@ -71,13 +79,27 @@ public class RedirectInformation extends Entity implements HasStatus {
         this.subscription = object.has("subscription") ? new SubscriptionInformation(object.getJSONObject("subscription")) : null;
         this.status = object.has("status") ? new Status(object.getJSONObject("status")) : null;
     }
-    
+    /**
+     * Crea una nueva instancia de {@link RedirectInformation}
+     * @param requestId {@link RedirectInformation#requestId}
+     * @param request {@link RedirectInformation#request}
+     * @param payment {@link RedirectInformation#payment}
+     * @param subscription {@link RedirectInformation#subscription}
+     * @param status {@link RedirectInformation#status}
+     */
     public RedirectInformation(Integer requestId, RedirectRequest request, List<Transaction> payment, SubscriptionInformation subscription, Status status) {
         this.requestId = requestId;
         this.request = request;
         this.payment = payment;
         this.subscription = subscription;
         this.status = status;
+    }
+    /**
+     * Crea una nueva instancia de {@link RedirectInformation}
+     * @param content string containing a valid json
+     */
+    public RedirectInformation(String content) {
+        this(new JSONObject(content));
     }
 
     /**

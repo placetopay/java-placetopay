@@ -91,6 +91,8 @@ public class RedirectRequest extends EntityWithNameValuePair {
      * No muestra los detalles de la respuesta una vez el pago ha finalizado
      */
     protected boolean skipResult = false;
+    
+    protected boolean noBuyerFill = false;
 
     /**
      * Crea una nueva instancia de {@link RedirectRequest}
@@ -111,7 +113,7 @@ public class RedirectRequest extends EntityWithNameValuePair {
         this.cancelUrl = object.has("cancelUrl") ? object.getString("cancelUrl") : null;
         this.captureAddress = object.has("captureAddress") ? object.getBoolean("captureAddress") : false;
         this.skipResult = object.has("skipResult") ? object.getBoolean("skipResult") : false;
-        
+        this.noBuyerFill = object.has("noBuyerFill") ? object.getBoolean("noBuyerFill") : false;
         if (object.has("locale"))
             this.locale = object.getString("locale");
         if (object.has("expiration"))
@@ -151,8 +153,9 @@ public class RedirectRequest extends EntityWithNameValuePair {
      * @param userAgent {@link RedirectRequest#userAgent}
      * @param expiration {@link RedirectRequest#expiration}
      * @param captureAddress {@link RedirectRequest#captureAddress} 
+     * @param noBuyerFill {@link RedirectRequest#noBuyerFill}
      */
-    public RedirectRequest(Person payer, Person buyer, Payment payment, Subscription subscription, String returnUrl, String paymentMethod, String cancelUrl, String ipAddress, String userAgent, String expiration, boolean captureAddress) {
+    public RedirectRequest(Person payer, Person buyer, Payment payment, Subscription subscription, String returnUrl, String paymentMethod, String cancelUrl, String ipAddress, String userAgent, String expiration, boolean captureAddress, boolean noBuyerFill) {
         this.payer = payer;
         this.buyer = buyer;
         this.payment = payment;
@@ -164,6 +167,14 @@ public class RedirectRequest extends EntityWithNameValuePair {
         this.userAgent = userAgent;
         this.expiration = expiration;
         this.captureAddress = captureAddress;
+        this.noBuyerFill = noBuyerFill;
+    }
+    /**
+     * Crea una nueva instancia de {@link RedirectRequest}
+     * @param content string containing a valid json
+     */
+    public RedirectRequest(String content) {
+        this(new JSONObject(content));
     }
     
     /**
@@ -335,6 +346,15 @@ public class RedirectRequest extends EntityWithNameValuePair {
         return skipResult;
     }
 
+    /**
+     * Devuelve el parámetro noBuyerFill
+     * @return {@link RedirectRequest#noBuyerFill}
+     */
+    public boolean isNoBuyerFill() {
+        return noBuyerFill;
+    }
+    
+
     @Override
     public JSONObject toJsonObject() {
         JSONObject object = new JSONObject();
@@ -352,6 +372,7 @@ public class RedirectRequest extends EntityWithNameValuePair {
         object.put("expiration", expiration);
         object.put("captureAddress", captureAddress);
         object.put("skipResult", skipResult);
+        object.put("noBuyerFill", noBuyerFill);
         return Entity.filterJSONObject(object);
     }
 }

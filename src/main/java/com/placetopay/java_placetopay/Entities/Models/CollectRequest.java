@@ -59,6 +59,14 @@ public class CollectRequest extends EntityWithNameValuePair {
 
     /**
      * Crea una nueva instancia de {@link CollectRequest}
+     * @param content string containing a valid json
+     */
+    public CollectRequest(String content) {
+        this(new JSONObject(content));
+    }
+    
+    /**
+     * Crea una nueva instancia de {@link CollectRequest}
      * Convierte el json en una nueva instancia de esta clase
      * @param object Json que contiene la información
      */
