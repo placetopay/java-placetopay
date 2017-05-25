@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.placetopay'
-version = '1.0.1'
+version = '1.0.2'
 
 allprojects {
 	repositories {
@@ -56,7 +56,7 @@ publishing {
 			from components.java
 			groupId 'com.placetopay'
             		artifactId 'java-placetopay'
-            		version '1.0.1'
+            		version '1.0.2'
                         artifact sourcesJar 
                         artifact javadocJar
 		}
@@ -69,11 +69,11 @@ bintray {
         publications = ['MyPublication'] 	
 	pkg {
 		repo = 'maven'
-		name = 'java_placetopay'
+		name = 'java-placetopay'
 		licenses = ['MIT']
 		vcsUrl = 'https://github.com/placetopay/java_placetopay.git'
 		version {
-			name = '1.0.1'
+			name = '1.0.2'
 			desc = 'Library to connect with PlacetoPay Redirection service'
 			//vcsTag = '1.0'
 			attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
