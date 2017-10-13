@@ -203,6 +203,11 @@ public class Notification extends Entity implements HasStatus {
 
     @Override
     public JSONObject toJsonObject() {
-        return new JSONObject();
+        JSONObject object = new JSONObject();
+        object.put("status", this.status != null ? this.status.toJsonObject() : null);
+        object.put("requestId", this.requestId);
+        object.put("reference", this.reference);
+        object.put("signature", this.signature);
+        return object;
     }
 }

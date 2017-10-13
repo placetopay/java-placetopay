@@ -203,7 +203,52 @@ public class RedirectInformation extends Entity implements HasStatus {
     public boolean isSuccessful() {
         return !this.status.getStatus().equals(Status.ST_ERROR);
     }
-
+    
+    public boolean isApproved() {
+        return this.status.getStatus().equals(Status.ST_APPROVED);
+    }
+    
+    public Transaction lastApprovedTransaction() {
+        return this.lastTransaction(true);
+    }
+    /**
+     * Obtiene la última transacción hecha en la sesión
+     * @return Transaction {@link Transaction}
+     */
+    public Transaction lastTransaction() {
+        return lastTransaction(false);
+    }
+    
+    /**
+     * Obtiene la última transacción hecha en la sesión
+     * @param approved
+     * @return Transaction {@link Transaction}
+     */
+    public Transaction lastTransaction(boolean approved)
+    {
+        List<Transaction> transactions = this.payment;
+        if (transactions != null && transactions.size() > 0) {
+            if (approved) {
+                for (int i = 0; i < transactions.size(); i++) {
+                    Transaction transaction = transactions.get(i);
+                    if (transaction.isApproved())
+                        return transaction;
+                }
+            } else {
+                return transactions.get(0);
+            }
+        }
+        return null;
+    }
+    
+    public String lastAuthorization() {
+        Transaction lastApprovedTransaction = this.lastApprovedTransaction();
+        if (lastApprovedTransaction != null) {
+            return lastApprovedTransaction.getAuthorization();
+        }
+        return null;
+    }
+    
     @Override
     public JSONObject toJsonObject() {
         JSONObject object = new JSONObject();

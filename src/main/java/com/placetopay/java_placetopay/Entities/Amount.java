@@ -65,7 +65,7 @@ public class Amount extends AmountBase {
     private List<TaxDetail> convertToTaxList(Object json) {
         List<TaxDetail> localDetails = Utils.convertToList(json, "taxes", TaxDetail.class);
         for (TaxDetail item: localDetails) {
-            taxAmount += Float.parseFloat(item.amount);
+            taxAmount += item.amount;
         }
         return localDetails;
     }

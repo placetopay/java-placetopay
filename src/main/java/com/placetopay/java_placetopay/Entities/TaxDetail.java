@@ -39,18 +39,18 @@ public class TaxDetail extends Entity {
     /**
      * Valor discriminado
      */
-    protected String amount;
+    protected float amount;
     /**
      * Valor base
      */
-    protected String base;
+    protected float base;
 
     
     public TaxDetail(JSONObject object) {
         this(
                 object.getString("kind"),
-                object.getString("amount"),
-                object.getString("base")
+                (float)object.getDouble("amount"),
+                (float)object.getDouble("base")
         );
     }
     /**
@@ -59,7 +59,7 @@ public class TaxDetail extends Entity {
      * @param amount {@link TaxDetail#amount}
      * @param base {@link TaxDetail#base} 
      */
-    public TaxDetail(String kind, String amount, String base) {
+    public TaxDetail(String kind, float amount, float base) {
         this.kind = kind;
         this.amount = amount;
         this.base = base;
@@ -77,7 +77,7 @@ public class TaxDetail extends Entity {
      * Devuelve el parámetro amount
      * @return {@link TaxDetail#amount}
      */
-    public String getAmount() {
+    public float getAmount() {
         return amount;
     }
 
@@ -85,7 +85,7 @@ public class TaxDetail extends Entity {
      * Devuelve el parámetro base
      * @return {@link TaxDetail#base}
      */
-    public String getBase() {
+    public float getBase() {
         return base;
     }
 

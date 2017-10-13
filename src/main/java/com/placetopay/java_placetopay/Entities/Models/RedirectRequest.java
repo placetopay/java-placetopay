@@ -350,7 +350,7 @@ public class RedirectRequest extends EntityWithNameValuePair {
      * Devuelve el parámetro noBuyerFill
      * @return {@link RedirectRequest#noBuyerFill}
      */
-    public boolean isNoBuyerFill() {
+    public boolean noBuyerFill() {
         return noBuyerFill;
     }
     

@@ -24,6 +24,12 @@
 package com.placetopay.java_placetopay.Entities;
 
 import com.placetopay.java_placetopay.Contracts.Entity;
+import com.placetopay.java_placetopay.Exceptions.PlaceToPayException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONObject;
 
 /**
@@ -43,6 +49,10 @@ public class Token extends Entity {
      * Representación numérica del token para casos donde es requerido un número adicional que parece como una tarjeta de crédito, los últimos 4 dígitos son iguales a los últimos 4 dígitos de la tarjeta de crédito.
      */
     protected String subtoken;
+    /**
+     * Código de la franquicia
+     */
+    protected String franchise;
     /**
      * Franquicia de la tarjeta tokenizada
      */
@@ -69,31 +79,33 @@ public class Token extends Entity {
     /**
      * Dígitos del código de seguridad de la tarjeta a usar en los casos en los que sea necesario, generalmente se deja en blanco si se tiene una terminal sin validación de CVV
      */
-    protected String installments;
+    protected Integer installments;
 
     public Token(JSONObject object) {
         this(
                 object.has("token") ? object.getString("token") : null,
                 object.has("subtoken") ? object.getString("subtoken") : null,
+                object.has("franchise") ? object.getString("franchise") : null,
                 object.has("franchiseName") ? object.getString("franchiseName") : null,
                 object.has("issuerName") ? object.getString("issuerName") : null,
                 object.has("lastDigits") ? object.getString("lastDigits") : null,
                 object.has("validUntil") ? object.getString("validUntil") : null,
                 object.has("cvv") ? object.getString("cvv") : null,
-                object.has("installments") ? object.getString("installments") : null
+                object.has("installments") ? Integer.parseInt(object.get("installments").toString()) : null
         );
         if (object.has("status"))
             status = new Status(object.getJSONObject("status"));
     }
     
-    public Token(String token, String subtoken, String franchiseName, String issuerName, String lastDigits, String validUntil, String cvv, String installments, Status status) {
-        this(token, subtoken, franchiseName, issuerName, lastDigits, validUntil, cvv, installments);
+    public Token(String token, String subtoken, String franchise, String franchiseName, String issuerName, String lastDigits, String validUntil, String cvv, Integer installments, Status status) {
+        this(token, subtoken, franchise, franchiseName, issuerName, lastDigits, validUntil, cvv, installments);
         this.status = status;
     }
     /**
      * Crea una nueva instance de {@link Token}
      * @param token {@link Token#token}
      * @param subtoken {@link Token#subtoken}
+     * @param franchise {@link Token#franchise}
      * @param franchiseName {@link Token#franchiseName}
      * @param issuerName {@link Token#issuerName}
      * @param lastDigits {@link Token#lastDigits}
@@ -101,9 +113,10 @@ public class Token extends Entity {
      * @param cvv {@link Token#cvv}
      * @param installments {@link Token#installments} 
      */
-    public Token(String token, String subtoken, String franchiseName, String issuerName, String lastDigits, String validUntil, String cvv, String installments) {
+    public Token(String token, String subtoken, String franchise, String franchiseName, String issuerName, String lastDigits, String validUntil, String cvv, Integer installments) {
         this.token = token;
         this.subtoken = subtoken;
+        this.franchise = franchise;
         this.franchiseName = franchiseName;
         this.issuerName = issuerName;
         this.lastDigits = lastDigits;
@@ -130,6 +143,14 @@ public class Token extends Entity {
      */
     public String getToken() {
         return token;
+    }
+    
+    /**
+     * Devuelve el parámetro franchise
+     * @return {@link Token#franchise}
+     */
+    public String getFranchise() {
+        return franchise;
     }
     
     /**
@@ -171,6 +192,16 @@ public class Token extends Entity {
     public String getValidUntil() {
         return validUntil;
     }
+    
+    public String getExpiration() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        SimpleDateFormat formatTo = new SimpleDateFormat("M/yy", Locale.US);
+        try {
+            return formatTo.format(dateFormat.parse(validUntil));
+        } catch (ParseException ex) {
+            throw new PlaceToPayException("Invalid expiration in token: " + ex.getMessage());
+        }
+    }
 
     /**
      * Devuelve el parámetro cvv
@@ -184,7 +215,7 @@ public class Token extends Entity {
      * Devuelve el parámetro installments
      * @return {@link Token#installments}
      */
-    public String getInstallments() {
+    public Integer getInstallments() {
         return installments;
     }
     
@@ -202,6 +233,7 @@ public class Token extends Entity {
         object.put("status", status == null ? null : status.toJsonObject());
         object.put("token", token);
         object.put("subtoken", subtoken);
+        object.put("franchise", franchise);
         object.put("franchiseName", franchiseName);
         object.put("issuerName", issuerName);
         object.put("lastDigits", lastDigits);

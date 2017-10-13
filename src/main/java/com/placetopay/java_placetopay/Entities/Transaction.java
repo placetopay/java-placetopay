@@ -25,6 +25,7 @@ package com.placetopay.java_placetopay.Entities;
 
 import com.placetopay.java_placetopay.Contracts.Entity;
 import com.placetopay.java_placetopay.Utils;
+import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -226,6 +227,10 @@ public class Transaction extends Entity {
         return this.status != null && !this.status.getStatus().equals(Status.ST_ERROR);
     }
     
+    public boolean isApproved() {
+        return this.status != null && this.status.getStatus().equals(Status.ST_APPROVED);
+    }
+    
     public JSONArray processorFieldsToArray() {
         JSONArray jsona = new JSONArray();
         for (NameValuePair pair: processorFields) {
@@ -236,6 +241,17 @@ public class Transaction extends Entity {
     
     private static List<NameValuePair> setProcessorFields(Object json) {
         return Utils.convertToList(json, "item", NameValuePair.class);
+    }
+    
+    public JSONObject additionalData() {
+        if (this.processorFields != null) {
+            JSONObject object = new JSONObject();
+            for (NameValuePair pair: this.processorFields) {
+                object.put(pair.keyword, pair.value);
+            }
+            return object;
+        }
+        return new JSONObject();
     }
 
     @Override

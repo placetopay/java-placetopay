@@ -30,6 +30,7 @@ import com.placetopay.java_placetopay.Entities.Status;
 import com.placetopay.java_placetopay.Exceptions.BadPlaceToPayException;
 import com.placetopay.java_placetopay.Exceptions.PlaceToPayException;
 import org.json.JSONObject;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 /**
  *
@@ -62,6 +63,7 @@ public class NotificationTest extends AppTest {
         assertFalse(notification.getStatus().getStatus(), notification.isRejected());
         assertEquals("Same request identifier", notification.getRequestId(), new Integer(83));
         assertEquals("Same reference", notification.getReference(), "TEST_20161010_213937");
+        JSONAssert.assertEquals(object, notification.toJsonObject(), false);
     }
     
     public void testItParsesANotificationPost() {

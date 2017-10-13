@@ -104,6 +104,7 @@ public class SubscriptionInformation extends Entity {
         if (instrumentNVP == null)
             return null;
         JSONObject object = new JSONObject();
+        object.put("status", this.getStatus().toJsonObject());
         for (NameValuePair pair: instrumentNVP) {
             object.put(pair.getKeyword(), pair.getValue());
         }
