@@ -42,7 +42,7 @@ public class NameValuePair extends Entity {
     
     public NameValuePair(JSONObject object)  {
         this.keyword = object.getString("keyword");
-        this.value = object.has("value") ? object.getString("value") : null;
+        this.value = object.has("value") ? object.get("value").toString() : null;
         if (object.has("displayOn"))
             this.displayOn = object.getString("displayOn");
     }
