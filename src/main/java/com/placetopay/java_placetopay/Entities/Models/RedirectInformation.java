@@ -198,7 +198,7 @@ public class RedirectInformation extends Entity implements HasStatus {
     
     /**
      * Devuelve <strong>true</strong> si la petición no fue un error, de lo contrario <strong>false</strong>
-     * @return
+     * @return boolean
      */
     public boolean isSuccessful() {
         return !this.status.getStatus().equals(Status.ST_ERROR);
@@ -221,7 +221,7 @@ public class RedirectInformation extends Entity implements HasStatus {
     
     /**
      * Obtiene la última transacción hecha en la sesión
-     * @param approved
+     * @param approved Si obtiene los aprobados
      * @return Transaction {@link Transaction}
      */
     public Transaction lastTransaction(boolean approved)

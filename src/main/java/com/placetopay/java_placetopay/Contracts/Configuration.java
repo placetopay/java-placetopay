@@ -24,8 +24,11 @@
 package com.placetopay.java_placetopay.Contracts;
 
 import com.placetopay.java_placetopay.Carrier.Authentication;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -50,7 +53,14 @@ public class Configuration {
     public Configuration(String login, String tranKey, URL url, String type, Map<String, String> additional, Authentication.Parameter authParameter) {
         this.login = login;
         this.tranKey = tranKey;
-        this.url = url;
+        if (url.toString().endsWith("/"))
+            this.url = url;
+        else
+            try {
+                this.url = new URL(url.toString() + "/");
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
+            }
         this.type = type;
         this.additional = additional;
         this.authParameter = authParameter;
