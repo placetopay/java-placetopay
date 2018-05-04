@@ -135,6 +135,7 @@ public class RestCarrier extends Carrier {
         HttpURLConnection httpConnection  = (HttpURLConnection) url.openConnection();
         httpConnection.setDoOutput(true);
         httpConnection.setRequestMethod(method);
+        httpConnection.setRequestProperty("User-Agent", "Java/" + System.getProperty("java.version"));
         httpConnection.setRequestProperty("Content-Type", "application/json");
         httpConnection.setRequestProperty("Accept", "application/json");
         // Not required
