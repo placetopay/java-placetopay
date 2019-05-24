@@ -34,7 +34,7 @@ import org.json.JSONObject;
  * @author hernan_saldarriaga
  */
 public class CollectTest extends AppTest {
-    
+
     protected String data =
     "{  \n" +
     "   \"payer\":{  \n" +
@@ -57,14 +57,14 @@ public class CollectTest extends AppTest {
     "      }\n" +
     "   }\n" +
     "}";
-    
+
     public void testItSOAPCollectsATokenPayment() {
         Gateway gateway = this.getGateway(Gateway.TP_SOAP);
         CollectRequest request = new CollectRequest(new JSONObject(data));
         RedirectInformation info = gateway.collect(request);
         assertEquals("Fail to collect by SOAP", info.isSuccessful(), true);
     }
-    
+
     public void testIfRestCollectsATokenPayment() {
         Gateway gateway = this.getGateway();
         CollectRequest request = new CollectRequest(new JSONObject(data));

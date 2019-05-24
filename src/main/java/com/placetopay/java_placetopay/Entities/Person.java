@@ -32,7 +32,7 @@ import org.json.JSONObject;
  */
 public class Person extends Entity {
     
-    protected Long document;
+    protected String document;
     protected String documentType;
     protected String name;
     protected String surname;
@@ -44,14 +44,14 @@ public class Person extends Entity {
     
     public Person(JSONObject object) {
         this(
-                object.has("document") ? object.getLong("document") : null,
+                object.has("document") ? object.get("document").toString() : null,
                 object.has("documentType") ? object.getString("documentType") : null,
                 object.has("name") ? object.getString("name") : null,
                 object.has("surname") ? object.getString("surname") : null,
                 object.has("company") ? object.getString("company") : null,
                 object.has("email") ? object.getString("email") : null,
                 object.has("address") ? new Address(object.getJSONObject("address")) : null,
-                object.has("mobile") ? object.getString("mobile") : null
+                object.has("mobile") ? object.get("mobile").toString() : null
         );
     }
     /**
@@ -65,7 +65,7 @@ public class Person extends Entity {
      * @param address Información completa de la dirección
      * @param mobile Número celular
      */
-    public Person(Long document, String documentType, String name, String surname, String company, String email, Address address, String mobile) {
+    public Person(String document, String documentType, String name, String surname, String company, String email, Address address, String mobile) {
         this.document = document;
         this.documentType = documentType;
         this.name = name;
@@ -76,7 +76,7 @@ public class Person extends Entity {
         this.mobile = mobile;
     }
 
-    public Long getDocument() {
+    public String getDocument() {
         return document;
     }
 

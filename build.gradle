@@ -9,7 +9,7 @@ plugins {
 }
 
 group = 'com.placetopay'
-version = '1.0.6'
+version = '1.0.7'
 
 allprojects {
 	repositories {
@@ -77,7 +77,7 @@ publishing {
 			from components.java
 			groupId 'com.placetopay'
             		artifactId 'java-placetopay'
-            		version '1.0.6'
+            		version '1.0.7'
                         artifact sourcesJar 
                         artifact javadocJar
                         pom.withXml {
@@ -106,10 +106,10 @@ bintray {
                 githubRepo = 'placetopay/java-placetopay' //Optional Github repository
                 githubReleaseNotesFile = 'README.md' //Optional Github readme file
 		version {
-			name = '1.0.6'
+			name = '1.0.7'
 			desc = 'Library to connect with PlacetoPay Redirection service'
 			released = new Date()
-                        vcsTag = '1.0.6'
+                        vcsTag = '1.0.7'
 			attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
 		}	
 	}
