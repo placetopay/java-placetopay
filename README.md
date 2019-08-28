@@ -11,7 +11,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'com.placetopay:java-placetopay:1.0.8'
+    compile 'com.placetopay:java-placetopay:1.0.7'
 }
 ```
 
@@ -21,7 +21,7 @@ Maven
 <dependency>
   <groupId>com.placetopay</groupId>
   <artifactId>java-placetopay</artifactId>
-  <version>1.0.8</version>
+  <version>1.0.7</version>
 </dependency>
 ```
 

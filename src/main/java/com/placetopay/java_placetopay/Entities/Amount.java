@@ -42,11 +42,11 @@ public class Amount extends AmountBase {
      * Descripción del importe total
      */
     protected List<AmountDetail> details = null;
-    protected double taxAmount;
+    protected float taxAmount;
     
-    protected double vatDevolutionBase = 0;
+    protected float vatDevolutionBase = 0;
     
-    protected double subtotal = 0;
+    protected float subtotal = 0;
 
     public Amount(JSONObject object) {
         super(object);
@@ -88,15 +88,15 @@ public class Amount extends AmountBase {
         return details;
     }
 
-    public double getTaxAmount() {
+    public float getTaxAmount() {
         return taxAmount;
     }
 
-    public double getDevolutionBase() {
+    public float getDevolutionBase() {
         return vatDevolutionBase;
     }
 
-    public double getSubtotal() {
+    public float getSubtotal() {
         if (subtotal == 0.0f)
             return this.total - this.taxAmount;
         return subtotal;

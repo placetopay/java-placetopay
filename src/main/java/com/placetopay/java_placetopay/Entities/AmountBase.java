@@ -38,14 +38,14 @@ public class AmountBase extends Entity {
     /**
      * Valor total
      */
-    protected double total;
+    protected float total;
     
     public AmountBase(JSONObject object) {
         if (!object.has("currency"))
             this.total = (float) object.getDouble("total");
         else {
             this.currency = object.getString("currency");
-            this.total = object.getDouble("total");
+            this.total = (float) object.getDouble("total");
         }
     }
     /**
@@ -53,12 +53,12 @@ public class AmountBase extends Entity {
      * @param currency {@link AmountBase#currency}
      * @param total {@link AmountBase#total} 
      */
-    public AmountBase(String currency, double total) {
+    public AmountBase(String currency, float total) {
         this.currency = currency;
         this.total = total;
     }
     
-    public AmountBase(double total) {
+    public AmountBase(float total) {
         this.total = total;
     }
 
@@ -73,7 +73,7 @@ public class AmountBase extends Entity {
      * Devuelve el parámetro total
      * @return {@link AmountBase#total}
      */
-    public double getTotal() {
+    public float getTotal() {
         return total;
     }
 

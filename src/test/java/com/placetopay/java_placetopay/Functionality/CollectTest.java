@@ -48,7 +48,7 @@ public class CollectTest extends AppTest {
     "      \"reference\":\"TESTING123456\",\n" +
     "      \"amount\":{  \n" +
     "         \"currency\":\"COP\",\n" +
-    "         \"total\":\"2269609\"\n" +
+    "         \"total\":\"10000\"\n" +
     "      }\n" +
     "   },\n" +
     "   \"instrument\":{  \n" +
