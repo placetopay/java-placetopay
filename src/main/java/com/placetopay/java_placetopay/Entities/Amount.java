@@ -111,23 +111,25 @@ public class Amount extends AmountBase {
     }
     
     public JSONArray taxesToJsonArray() {
+         JSONArray array = new JSONArray();
         if (this.taxes != null) {
-            JSONArray array = new JSONArray();
+          
             for (TaxDetail tax: taxes) {
                 array.put(tax.toJsonObject());
             }
         }
-        return null;
+        return array;
     }
     
     public JSONArray detailsToJsonArray() {
+       JSONArray array = new JSONArray();
         if (this.details != null) {
-            JSONArray array = new JSONArray();
+           
             for (AmountDetail amount: details) {
                 array.put(amount.toJsonObject());
             }
         }
-        return null;
+        return array;
     }
 
     @Override
