@@ -47,7 +47,16 @@ public class Payment extends EntityWithNameValuePair {
     
     public Payment(JSONObject object) {
         super(object);
-        this.reference = object.has("reference") ? object.getString("reference") : null;
+        this.reference = null;
+        if (object.has("reference")) {
+            if (object.get("reference") instanceof String) {
+                this.reference = object.getString("reference");
+            } else {
+                if ((object.get("reference") instanceof Integer)) {
+                    this.reference = String.valueOf(object.getInt("reference"));
+                }
+            }
+        }
         this.allowPartial = object.has("allowPartial") ? object.getBoolean("allowPartial") : false;
         this.description = object.has("description") ? object.getString("description") : null;
         this.amount = object.has("amount") ? new Amount(object.getJSONObject("amount")) : null;

@@ -44,7 +44,7 @@ public abstract class Entity implements HasValidator {
     @Override
     public BaseValidator getValidator() {
         try {
-            if (this.validatorInstance == null)
+            if ((this.validatorInstance == null) && (this.validatorClass != null))
                 this.validatorInstance = (BaseValidator)validatorClass.newInstance();
             return this.validatorInstance;
         } catch (Exception ex) {
