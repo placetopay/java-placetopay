@@ -90,10 +90,8 @@ public class Transaction extends Entity {
         if (object.has("reference")) {
             if (object.get("reference") instanceof String) {
                 this.reference = object.getString("reference");
-            } else {
-                if ((object.get("reference") instanceof Integer)) {
-                    this.reference = String.valueOf(object.getInt("reference"));
-                }
+            } else if ((object.get("reference") instanceof Long)) {
+                this.reference = String.valueOf(object.getLong("reference"));
             }
         }
         this.internalReference = object.has("internalReference") ? object.getInt("internalReference") : null;
