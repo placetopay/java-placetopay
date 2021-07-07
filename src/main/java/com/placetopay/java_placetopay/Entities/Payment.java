@@ -53,6 +53,8 @@ public class Payment extends EntityWithNameValuePair {
                 this.reference = object.getString("reference");
             } else if ((object.get("reference") instanceof Long)) {
                 this.reference = String.valueOf(object.getLong("reference"));
+            } else if ((object.get("reference") instanceof Integer)) {
+                this.reference = String.valueOf(object.getInt("reference"));
             }
         }
         this.allowPartial = object.has("allowPartial") ? object.getBoolean("allowPartial") : false;
