@@ -52,7 +52,7 @@ public class Transaction extends Entity {
      */
     protected String paymentMethod;
     /**
-     * Nombre del método de pago utilizado 
+     * Nombre del método de pago utilizado
      */
     protected String paymentMethodName;
     /**
@@ -86,7 +86,16 @@ public class Transaction extends Entity {
 
     public Transaction(JSONObject object) {
         this.status = object.has("status") ? new Status(object.getJSONObject("status")) : null;
-        this.reference = object.has("reference") ? object.getString("reference") : null;
+        this.reference = null;
+        if (object.has("reference")) {
+            if (object.get("reference") instanceof String) {
+                this.reference = object.getString("reference");
+            } else if ((object.get("reference") instanceof Long)) {
+                this.reference = String.valueOf(object.getLong("reference"));
+            } else if ((object.get("reference") instanceof Integer)) {
+                this.reference = String.valueOf(object.getInt("reference"));
+            }
+        }
         this.internalReference = object.has("internalReference") ? object.getInt("internalReference") : null;
         this.paymentMethod = object.has("paymentMethod") ? object.getString("paymentMethod") : null;
         this.paymentMethodName = object.has("paymentMethodName") ? object.getString("paymentMethodName") : null;
@@ -98,7 +107,7 @@ public class Transaction extends Entity {
         this.refunded = object.has("refunded") ? object.getBoolean("refunded") : false;
         this.processorFields = object.has("processorFields") ? setProcessorFields(object.get("processorFields")) : null;
     }
-        
+
     public Transaction(Status status, String reference, Integer internalReference, String paymentMethod, String paymentMethodName, String issuerName, AmountConversion amount, String authorization, Long receipt, String franchise, boolean refunded, List<NameValuePair> processorFields) {
         this.status = status;
         this.reference = reference;
@@ -209,7 +218,7 @@ public class Transaction extends Entity {
     public List<NameValuePair> getProcessorFields() {
         return processorFields;
     }
-    
+
     /**
      *
      * @param base json content
@@ -218,7 +227,7 @@ public class Transaction extends Entity {
         AmountBase base1 = new AmountBase(base);
         amount = new AmountConversion().setAmountBase(base1);
     }
-    
+
     /**
      *
      * @return Verifica que no hubo un error en la transacción
@@ -226,11 +235,11 @@ public class Transaction extends Entity {
     public boolean isSuccessful() {
         return this.status != null && !this.status.getStatus().equals(Status.ST_ERROR);
     }
-    
+
     public boolean isApproved() {
         return this.status != null && this.status.getStatus().equals(Status.ST_APPROVED);
     }
-    
+
     public JSONArray processorFieldsToArray() {
         JSONArray jsona = new JSONArray();
         for (NameValuePair pair: processorFields) {
@@ -238,11 +247,11 @@ public class Transaction extends Entity {
         }
         return jsona;
     }
-    
+
     private static List<NameValuePair> setProcessorFields(Object json) {
         return Utils.convertToList(json, "item", NameValuePair.class);
     }
-    
+
     public JSONObject additionalData() {
         if (this.processorFields != null) {
             JSONObject object = new JSONObject();
